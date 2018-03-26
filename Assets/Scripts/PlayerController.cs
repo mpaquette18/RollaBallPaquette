@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public Text winText;
     public int count;
 
+    public GameObject player;
+
     void Start()
     {
         count = 0;
@@ -23,18 +25,18 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+        float moveHorizontal = player.GetComponent<moveBall>().rollX;
+        float moveVertical = player.GetComponent<moveBall>().rollY;
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-
+        
         rb.AddForce(movement * speed);
         if (Input.GetKeyDown(KeyCode.Space)&&isGrounded) {
             rb.AddForce(new Vector3(0, 500, 0));
             isGrounded = false;
             Debug.Log("UnGrounded");
         }
-
+    
     }
 
     private void OnCollisionEnter(Collision collision)
