@@ -31,11 +31,7 @@ public class PlayerController : MonoBehaviour
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         
         rb.AddForce(movement * speed);
-        if (Input.GetKeyDown(KeyCode.Space)&&isGrounded) {
-            rb.AddForce(new Vector3(0, 500, 0));
-            isGrounded = false;
-            Debug.Log("UnGrounded");
-        }
+        
     
     }
 
@@ -54,5 +50,16 @@ public class PlayerController : MonoBehaviour
         {
             winText.text = "You Win!";
         }
+    }
+
+
+
+    public void Jump() {
+        if (isGrounded) {
+            rb.AddForce(new Vector3(0, 500, 0));
+            isGrounded = false;
+            Debug.Log("UnGrounded");
+        }
+
     }
 }

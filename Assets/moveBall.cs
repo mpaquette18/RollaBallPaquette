@@ -18,9 +18,13 @@ public class moveBall : MonoBehaviour {
         device = SteamVR_Controller.Input((int)trackedObj.index);
          rollX = device.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0).x;
          rollY = device.GetAxis(Valve.VR.EVRButtonId.k_EButton_Axis0).y;
-      
-        
 
+        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad)) {
+
+            FindObjectOfType<PlayerController>().Jump();
+        }
+
+        
     }
 
 
